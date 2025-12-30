@@ -1,0 +1,35 @@
+name: Python CI
+
+# 定義什麼時候觸發這個流程
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # 使用 Linux 虛擬機執行
+
+    steps:
+    - name: 1. 下載原始碼
+      uses: actions/checkout@v3
+
+    - name: 2. 設定 Python 環境
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: 3. 安裝依賴套件
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest flake8
+
+    - name: 4. 執行 Linter (flake8)
+      run: |
+        # 如果有任何風格錯誤，流程會在這裡停止
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: 5. 執行單元測試 (pytest)
+      run: |
+        pytest

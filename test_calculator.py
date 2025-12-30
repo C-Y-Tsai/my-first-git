@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # test_calculator.py
 from calculator import add, divide
 import pytest
@@ -19,3 +20,24 @@ def test_add_negative():
 def test_divide_by_zero():
     with pytest.raises(ValueError, match="除數不能為零"):
         divide(10, 0)
+=======
+from calculator import add, devide
+import pytest
+
+def test_add_simple():
+    #安排
+    a, b = 2, 3
+    #執行
+    result = add(a, b)
+    #assert
+    assert result == 5
+
+#測試edge case
+def test_add_negative():
+    assert add(-1, 1) == 0
+
+#測試error handling
+def test_divide_by_zero():
+    with pytest.raises(ValueError, match="除數不能為零"):
+        devide(10, 0)
+>>>>>>> b5d4855 (Add: Github Actions CI configuration)
