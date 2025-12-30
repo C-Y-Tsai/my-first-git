@@ -1,2 +1,1 @@
-Hello Git
-This is a new section about the author.
+learning_Julia
